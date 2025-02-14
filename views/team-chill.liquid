@@ -1,0 +1,14 @@
+{% render 'partials/head.liquid', title: 'Team Chill' %}
+
+<a class="goback" href="/">Go back</a>
+
+<ul class="container">
+    {% for person in persons %}
+      <li class="cards" style="background-color: {{person.fav_color}};">
+        <img src="{{ person.avatar }}" height="230px">
+        <div>{{ person.name }}</div>
+      </li>
+    {% endfor %}
+  </ul> 
+
+  {% render 'partials/foot.liquid', squads: squads %}

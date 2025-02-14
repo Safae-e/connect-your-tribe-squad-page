@@ -46,7 +46,7 @@ app.use(express.urlencoded({extended: true}))
 // Maak een GET route voor de index
 app.get('/', async function (request, response) {
   // Haal alle personen uit de WHOIS API op, van dit jaar
-  const personResponse = await fetch('https://fdnd.directus.app/items/person/?sort=name&fields=*,squads.squad_id.name,squads.squad_id.cohort&filter={"_and":[{"squads":{"squad_id":{"tribe":{"name":"FDND Jaar 1"}}}},{"squads":{"squad_id":{"cohort":"2425"}}}]}')
+  const personResponse = await fetch('https://fdnd.directus.app/items/person/?fields=*,squads.squad_id.name&filter=%7B%22squads%22:%7B%22squad_id%22:%7B%22name%22:%221H%22%7D%7D%7D&sort=name')
 
   // En haal daarvan de JSON op
   const personResponseJSON = await personResponse.json()
@@ -57,6 +57,65 @@ app.get('/', async function (request, response) {
   // Render index.liquid uit de views map en geef de opgehaalde data mee als variabele, genaamd persons
   // Geef ook de eerder opgehaalde squad data mee aan de view
   response.render('index.liquid', {persons: personResponseJSON.data, squads: squadResponseJSON.data})
+})
+
+// Om Views weer te geven, heb je Routes nodig
+// Maak een GET route voor de index
+app.get('/teamcool', async function (request, response) {
+  // Haal alle personen uit de WHOIS API op, van dit jaar
+  const personResponse = await fetch('https://fdnd.directus.app/items/person/?filter=%7B%22team%22:%22Cool%22%7D')
+
+  // En haal daarvan de JSON op
+  const personResponseJSON = await personResponse.json()
+  
+  // personResponseJSON bevat gegevens van alle personen uit alle squads van dit jaar
+  // Je zou dat hier kunnen filteren, sorteren, of zelfs aanpassen, voordat je het doorgeeft aan de view
+
+  // Render index.liquid uit de views map en geef de opgehaalde data mee als variabele, genaamd persons
+  // Geef ook de eerder opgehaalde squad data mee aan de view
+  response.render('team-cool.liquid', {persons: personResponseJSON.data, squads: squadResponseJSON.data})
+})
+
+// Team awesome
+app.get('/teamawesome', async function (request, response) {
+  const personResponse = await fetch('https://fdnd.directus.app/items/person/?filter=%7B%22team%22:%22Awesome%22%7D')
+  const personResponseJSON = await personResponse.json()
+  response.render('team-awesome.liquid', {persons: personResponseJSON.data, squads: squadResponseJSON.data})
+})
+
+// Team blaze
+app.get('/teamblaze', async function (request, response) {
+  const personResponse = await fetch('https://fdnd.directus.app/items/person/?filter=%7B%22team%22:%22Blaze%22%7D')
+  const personResponseJSON = await personResponse.json()
+  response.render('team-blaze.liquid', {persons: personResponseJSON.data, squads: squadResponseJSON.data})
+})
+
+// Team chill
+app.get('/teamchill', async function (request, response) {
+  const personResponse = await fetch('https://fdnd.directus.app/items/person/?filter=%7B%22team%22:%22Chill%22%7D')
+  const personResponseJSON = await personResponse.json()
+  response.render('team-chill.liquid', {persons: personResponseJSON.data, squads: squadResponseJSON.data})
+})
+
+//  Team rad
+app.get('/teamrad', async function (request, response) {
+  const personResponse = await fetch('https://fdnd.directus.app/items/person/?filter=%7B%22team%22:%22Rad%22%7D')
+  const personResponseJSON = await personResponse.json()
+  response.render('team-rad.liquid', {persons: personResponseJSON.data, squads: squadResponseJSON.data})
+})
+
+//  Team rocket
+app.get('/teamrocket', async function (request, response) {
+  const personResponse = await fetch('https://fdnd.directus.app/items/person/?filter=%7B%22team%22:%22Rocket%22%7D')
+  const personResponseJSON = await personResponse.json()
+  response.render('team-rocket.liquid', {persons: personResponseJSON.data, squads: squadResponseJSON.data})
+})
+
+//  Team spirit
+app.get('/teamspirit', async function (request, response) {
+  const personResponse = await fetch('https://fdnd.directus.app/items/person/?filter=%7B%22team%22:%22Spirit%22%7D')
+  const personResponseJSON = await personResponse.json()
+  response.render('team-spirit.liquid', {persons: personResponseJSON.data, squads: squadResponseJSON.data})
 })
 
 // Maak een POST route voor de index; hiermee kun je bijvoorbeeld formulieren afvangen
