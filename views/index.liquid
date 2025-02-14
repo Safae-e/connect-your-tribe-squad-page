@@ -17,7 +17,7 @@
   <ul class="container">
     {% for person in persons %}
       <li class="cards" style="background-color: {{person.fav_color}};">
-        <img src="{{ person.avatar }}" height="230px">
+        <img src="{{ person.avatar }}" height="230px" alt="avatar">
         <div>{{ person.name }}</div>
       </li>
     {% endfor %}
