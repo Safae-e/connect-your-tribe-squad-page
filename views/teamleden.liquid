@@ -1,3 +1,5 @@
+{% render 'partials/head.liquid', href: 'style.css' %}
+
 <h1> {{ team_name }} </h1>
 
 <ul>
@@ -5,3 +7,5 @@
     <li><a href="/detail/{{ person.id }}">{{ person.name }} {{ person.team }} </a></li>
   {% endfor %}
 </ul>
+
+{% render 'partials/foot.liquid', squads: squads %}
