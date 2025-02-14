@@ -140,6 +140,18 @@ app.get('/student/:id', async function (request, response) {
 })
 
 
+app.get('/teams/:team', async function (request, response) {
+  console.log(request.params.team)
+
+  const teamResponse = await fetch (`https://fdnd.directus.app/items/person/?filter={"team":{"_contains":"${request.params.team}"}}`)
+  const teamResponseJSON = await teamResponse.json()
+
+  console.log(teamResponseJSON.data)
+
+  response.render('teamleden.liquid', {persons: teamResponseJSON.data, squads: squadResponseJSON.data, team_name: request.params.team})
+})
+
+
 // Stel het poortnummer in waar express op moet gaan luisteren
 app.set('port', process.env.PORT || 8000)
 
@@ -149,14 +161,3 @@ app.listen(app.get('port'), function () {
   console.log(`Application started on http://localhost:${app.get('port')}`)
 })
 
-
-// app.get('/teams/:team', async function (request, response) {
-//   console.log(request, params.team)
-
-//   const teamResponce = await fetch ('https://fdnd.directus.app/items/person/?filter={"_contains":"'+ request.params.team + '"}}')
-//   const teamResponceJSON = await teamResponse.json()
-
-//   console.log(teamResponseJSON)
-
-//   response.render('teamleden.liquid', {person: teamResponseJSON.data, squads: squadResponseJSON.data, team_name: request.params.team})
-// })
