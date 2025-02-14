@@ -148,3 +148,15 @@ app.listen(app.get('port'), function () {
   // Toon een bericht in de console en geef het poortnummer door
   console.log(`Application started on http://localhost:${app.get('port')}`)
 })
+
+
+// app.get('/teams/:team', async function (request, response) {
+//   console.log(request, params.team)
+
+//   const teamResponce = await fetch ('https://fdnd.directus.app/items/person/?filter={"_contains":"'+ request.params.team + '"}}')
+//   const teamResponceJSON = await teamResponse.json()
+
+//   console.log(teamResponseJSON)
+
+//   response.render('teamleden.liquid', {person: teamResponseJSON.data, squads: squadResponseJSON.data, team_name: request.params.team})
+// })
