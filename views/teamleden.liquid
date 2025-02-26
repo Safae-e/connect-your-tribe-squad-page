@@ -1,11 +1,22 @@
-{% render 'partials/head.liquid', href: 'style.css' %}
+{% render 'partials/head.liquid', title: team_name %}
 
-<h1> {{ team_name }} </h1>
+<link rel="stylesheet" href="style.css">
 
-<ul>
+<main>
+<ul class="container">
   {% for person in persons %}
-    <li><a href="/detail/{{ person.id }}">{{ person.name }} {{ person.team }} </a></li>
+    <li class="cards" style="background-color: {{person.fav_color}};">
+        <a href="/detail/{{ person.id }}">{{ person.name }} </a></li>
   {% endfor %}
 </ul>
 
+{% comment %} <ul class="container">
+    {% for person in persons %}
+      <li class="cards" style="background-color: {{person.fav_color}};">
+        <img src="{{ person.avatar }}" height="230">
+        <div>{{ person.name }}</div>
+      </li>
+    {% endfor %}
+  </ul>  {% endcomment %}
+</main>
 {% render 'partials/foot.liquid', squads: squads %}
